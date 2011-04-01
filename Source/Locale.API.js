@@ -9,25 +9,45 @@ provides: Locale.API
 
 (function(){
 
-var translateArguments = function(type, method, translate){
-
-	var origin = type.prototype[method], methods = {};
-	if (origin.$origin) origin = origin.$origin;
-
+var translateMethods = function(func, method, translate) {
+	var methods = {};
 	methods[method] = function(){
 		var args = Array.map(arguments, function(value, i){
+			if(typeOf(value) == 'object') {
+				var obj = {};
+				Object.each(value, function(v, key) {
+					obj[(translate.arguments[i] && Object.keyOf(translate.arguments[i], key)) || key] = v;
+				});
+				return obj;
+			}
 			return (translate.arguments[i] && Object.keyOf(translate.arguments[i], value)) || value;
 		});
-		return origin.apply(this, args);
-	}.extend({$origin: origin});
-
+		return func.apply(this, args);
+	}.extend({$origin: func});
 	if (translate.method) methods[translate.method] = methods[method];
-	type.implement(methods);
+	return methods;
+}
 
+var translateArguments = function(type, method, translate){
+	var origin, methods;
+	origin = type.prototype[method]
+	if (origin.$origin) origin = origin.$origin;
+
+	methods = translateMethods(origin, method, translate);
+	
+	type.implement(methods);
 };
 
 var translateStatic = function(type, translate){
-	for (var old in translate) type[translate[old]] = type[old];
+	for (var old in translate) {
+		if(typeOf(translate[old]) == 'object') {
+			var methods = translateMethods(type[old], old, translate[old]);
+			Object.each(methods, function(v, k) {
+				type[k] = v;
+			});
+		}
+		else type[translate[old]] = type[old];
+	}
 };
 
 var alias = function(name, existing){

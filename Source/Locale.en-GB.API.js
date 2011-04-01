@@ -24,10 +24,13 @@ Locale.define('en-GB', 'API', {
 	Element: {
 		// Element.Style
 		setStyle: {arguments: [styles]},
-		getStyle: {arguments: [styles]}
+		getStyle: {arguments: [styles]},
+		setStyles: {arguments: [styles]}
 	},
-	Class: {
-		'initialize' : 'initialise'
+	window : {
+		'static' : {
+			'Class' : {arguments: [{'initialize':'initialise'}]}
+		}
 	}
 });
 
