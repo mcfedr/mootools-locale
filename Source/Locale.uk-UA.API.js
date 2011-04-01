@@ -83,8 +83,14 @@ var translation = {
 			method: 'повернутиСтиль',
 			arguments: [styles]
 		},
-		setStyles: 'встановитиСтилі',
-		getStyles: 'повернутиСтилі'
+		setStyles: {
+			method: 'встановитиСтилі',
+			arugments: [styles]
+		},
+		getStyles: {
+			method: 'повернутиСтилі',
+			arugments: [styles]
+		}
 
 	},
 
@@ -125,7 +131,10 @@ var translation = {
 			method: 'додатиПодію',
 			arguments: [events]
 		},
-		addEvents: 'додатиПодії',
+		addEvents: {
+			method: 'додатиПодії',
+			arguments: [events]
+		},
 		fireEvent: {
 			method: 'згенеруватиПодію',
 			arguments: [events]
@@ -134,8 +143,14 @@ var translation = {
 			method: 'видалитиПодію',
 			arguments: [events]
 		},
-		removeEvents: 'видалитиПодії',
-		cloneEvents: 'клонуватиПодії'
+		removeEvents: {
+			method: 'видалитиПодії',
+			arguments: [events]
+		},
+		cloneEvents: {
+			method: 'клонуватиПодії',
+			arguments: [,events]
+		}
 	});
 
 });

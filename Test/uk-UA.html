@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Locale.API</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.1/mootools.js"></script>
+	<script src="mootools-more.js"></script>
+	
+	<script src="../Source/Locale.API.js"></script>
+	<script src="../Source/Locale.uk-UA.API.js"></script>
+
+	<script>
+		Locale.use('uk-UA');
+
+		вікно.додатиПодію('готовий', function(){
+		    $$('#привіт')
+		        .встановитиСтиль('фон', '#00f')
+		        .встановитиСтиль('колір', '#E8F000')
+		        .встановити('текст', 'Привіт');
+
+		    var елемент = new Елемент('div');
+		    елемент.включитиВ(документ.тіло);
+
+		    елемент
+		        .встановитиСтиль('фон', '#E8F000')
+		        .встановитиСтиль('колір', '#00f')
+		        .встановити('текст', 'з України');
+
+		    [1, 2, 3].кожен(function(цифра, індекс){
+		        new Елемент('p').встановити('текст', цифра + ' ' + індекс).включитиВ(документ.тіло);
+		    });
+
+		    //$('bla').очистити();
+		    консоль.вивести('закінчили');
+		});
+
+	</script>
+
+</head>
+<body>
+
+<div id="привіт"></div>
+
+</body>
+</html>
