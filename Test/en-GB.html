@@ -18,7 +18,15 @@
 			element.inject(document.body);
 
 			element.setStyle('colour', '#ff0').set('text', 'Good moring Sir!');
-
+			
+			var Person = new Class({
+				initialise : function() {
+					this.as = "Fred";
+				}
+			});
+			
+			var fred = new Person();
+			new Element('div', {'text':fred.as}).inject(document.body);
 		});
 
 	</script>

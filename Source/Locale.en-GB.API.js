@@ -25,6 +25,9 @@ Locale.define('en-GB', 'API', {
 		// Element.Style
 		setStyle: {arguments: [styles]},
 		getStyle: {arguments: [styles]}
+	},
+	Class: {
+		'initialize' : 'initialise'
 	}
 });
 
